@@ -178,6 +178,7 @@ export class DataTableBodyRowComponent implements DoCheck {
   }
 
   onActivate(event: any, index: number): void {
+    console.log('activate', event);
     event.cellIndex = index;
     event.rowElement = this._element;
     this.activate.emit(event);
@@ -216,6 +217,16 @@ export class DataTableBodyRowComponent implements DoCheck {
         row: this.row,
         rowElement: this._element
       });
+  }
+
+  @HostListener('mouseleave', ['$event'])
+  onMouseleave(event: any): void {
+    this.activate.emit({
+      type: 'mouseleave',
+      event,
+      row: this.row,
+      rowElement: this._element
+    });
   }
 
   recalculateColumns(val: any[] = this.columns): void {
