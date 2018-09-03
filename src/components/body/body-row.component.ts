@@ -211,11 +211,21 @@ export class DataTableBodyRowComponent implements DoCheck {
   @HostListener('mouseenter', ['$event'])
   onMouseenter(event: any): void {
     this.activate.emit({
-        type: 'mouseenter',
-        event,
-        row: this.row,
-        rowElement: this._element
-      });
+      type: 'mouseenter',
+      event,
+      row: this.row,
+      rowElement: this._element
+    });
+  }
+
+  @HostListener('mouseleave', ['$event'])
+  onMouseleave(event: any): void {
+    this.activate.emit({
+      type: 'mouseleave',
+      event,
+      row: this.row,
+      rowElement: this._element
+    });
   }
 
   recalculateColumns(val: any[] = this.columns): void {
